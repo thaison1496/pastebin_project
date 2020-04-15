@@ -1,0 +1,8 @@
+
+sudo apt-get install postgresql
+sudo -u postgres createuser --superuser $(whoami)
+sudo -u $(whoami) createdb pastebin_project
+psql -U $(whoami) -d pastebin_project
+
+export APP_SETTINGS="config.DevelopmentConfig"
+export DATABASE_URL="postgresql:///pastebin_project"
