@@ -1,0 +1,5 @@
+sudo apt install nginx
+sudo apt install python3
+sudo apt install pip3
+sudo apt install gunicorn3
+pip3 install -r backend/requirements.txt
