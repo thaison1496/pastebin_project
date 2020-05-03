@@ -7,9 +7,16 @@ psql -U $(whoami) -d pastebin_project
 sudo service postgresql start
 
 export APP_SETTINGS="db_config.DevelopmentConfig"
-export DATABASE_URL="postgresql:///pastebin_project"
+export DATABASE_URL="postgresql://thaison1496@/pastebin_project"
 
 sudo -u createdb $(whoami)
 
 sudo apt-get install libpq-dev
 pip install psycopg2
+
+// create a new user and use auth with password to make docker easier
+CREATE ROLE pastebin_project PASSWORD '{pw}' LOGIN;
+GRANT ALL PRIVILEGES ON DATABASE "pastebin_project" to pastebin_project;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pastebin_project;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pastebin_project;
+psql -U pastebin_project -d pastebin_project -h 127.0.0.1 -W

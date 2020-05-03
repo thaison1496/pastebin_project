@@ -1,0 +1,7 @@
+sudo docker image build -t pastebin_project:1.0 .
+
+sudo docker container run --publish 8000:80 --detach --name pp pastebin_project:1.0 -t
+
+sudo docker container rm --force pp
+
+sudo docker exec -it pp bash
